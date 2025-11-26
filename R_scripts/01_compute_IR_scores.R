@@ -1,6 +1,6 @@
 ###############################################################
 ### HWTAI SCORING SCRIPT
-### Script 1/2 – Computing Individual IR Scores
+### Script 1/2 – Computing Individual PI Scores
 ### Author: Martí Pons Oliver
 ### Version: 1.0
 ### Description:
@@ -8,7 +8,7 @@
 ###   - Cleans attempts (penalties)
 ###   - Computes performance points for each level
 ###   - Computes repertoire score
-###   - Outputs final IR dataset for analysis
+###   - Outputs final PI dataset for analysis
 ###############################################################
 
 ###############################################################
@@ -134,7 +134,7 @@ compute_repertoire <- function(repertoire, efficacy){
 
 
 ###############################################################
-### 6. COMPUTE FINAL IR SCORE
+### 6. COMPUTE FINAL PI SCORE
 ###############################################################
 results <- data %>%
   rowwise() %>%
@@ -166,7 +166,7 @@ results <- data %>%
                    e1_3_clean, e2_3_clean, e3_3_clean, e4_3_clean)
     ),
     total_score = points_l1 + points_l2 + points_l3 + repertoire_points,
-    ir = total_score * 100 / 68
+    pi = total_score * 100 / 68
   ) %>%
   ungroup()
 
@@ -175,6 +175,6 @@ results <- data %>%
 ### 7. EXPORT ANALYSIS DATASET
 ###############################################################
 hwtai_analysis <- results %>%
-  select(id, expertise, assessment_time, observer, observation_time, ir)
+  select(id, expertise, assessment_time, observer, observation_time, pi)
 
 write_xlsx(hwtai_analysis, "hwtai_analysis.xlsx")
