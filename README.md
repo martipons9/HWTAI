@@ -5,11 +5,11 @@
 ---
 
 ## **Overview**
-This repository contains all scripts and materials used to compute the HWTAI performance score (IR score) and to conduct the instrument’s reliability and construct validity analyses.
+This repository contains all scripts and materials used to compute the HWTAI performance score (PI score) and to conduct the instrument’s reliability and construct validity analyses.
 
 Two independent R scripts are provided:
 
-- **01_compute_IR.R** → Computes the IR score from raw observation data  
+- **01_compute_PI.R** → Computes the PI score from raw observation data  
 - **02_reliability_validity_analysis.R** → Performs test–retest, intra-observer, inter-observer reliability, and construct validity
 
 A template Excel file (**hwtai_data.xlsx**) is included so that users can input their own observational data.
@@ -17,7 +17,7 @@ A template Excel file (**hwtai_data.xlsx**) is included so that users can input 
 ---
 
 ## **Before Running the Scripts**
-Before executing `01_compute_IR.R`, users must complete the Excel file **hwtai_data.xlsx** with the observational data obtained after administering the HWTAI.
+Before executing `01_compute_PI.R`, users must complete the Excel file **hwtai_data.xlsx** with the observational data obtained after administering the HWTAI.
 
 ### 1. **Mandatory metadata columns (only required for reliability/validity)**
 
@@ -67,7 +67,7 @@ No additional calculations are needed.
    - Cleaned performance indicators  
    - Level scores  
    - Repertoire score  
-   - Final **Instrument Result (IR)**  
+   - Final **Instrument Result (PI)**  
    - Export dataset `hwtai_analysis.xlsx`
 
 3. **Run script 2** *optionally* to perform:  
@@ -80,7 +80,7 @@ All statistical outputs follow the methodology used in the article.
 
 ---
 
-##  Script 1 — *Compute the Instrument Result (IR)*
+##  Script 1 — *Compute the Instrument Result (PI)*
 
 The script performs:
 
@@ -94,7 +94,7 @@ The script performs:
 ###  Output  
 A clean dataset containing:
 
-| id | expertise | assessment_time | observer | observation_time | IR |
+| id | expertise | assessment_time | observer | observation_time | PI |
 |----|-----------|------------------|----------|-------------------|----|
 
 Saved in the project root.
