@@ -36,6 +36,9 @@ If the user does **not** want to evaluate reliability/validity, these fields can
 
 Each attempt follows the naming structure:
 
+LetterAttempt_Level
+Example: A1_2 → Approach run, attempt 1, level 2
+
 ###  **Meaning of letters**
 - **A** = *Approach Run*  
 - **T** = *Take-off*  
@@ -57,5 +60,98 @@ No additional calculations are needed.
 
 ---
 
-## 📂 **Repository Structure**
+## Overview of the HWTAI Process
+
+1. **Fill in the scoring Excel file (`hwtai_data.xlsx`).**  
+2. **Run script 1** to automatically compute:  
+   - Cleaned performance indicators  
+   - Level scores  
+   - Repertoire score  
+   - Final **Instrument Result (IR)**  
+   - Export dataset `hwtai_analysis.xlsx`
+
+3. **Run script 2** *optionally* to perform:  
+   - Construct validity  
+   - Test–retest reliability  
+   - Intra-observer reliability  
+   - Inter-observer reliability  
+
+All statistical outputs follow the methodology used in the article.
+
+---
+
+##  Script 1 — *Compute the Instrument Result (IR)*
+
+The script performs:
+
+- Data preparation  
+- Cleaning rules based on penalisation code  
+- Attempt-level weighted scoring  
+- Global repertoire score calculation  
+- Final score aggregation  
+- Export of `hwtai_analysis.xlsx`  
+
+###  Output  
+A clean dataset containing:
+
+| id | expertise | assessment_time | observer | observation_time | IR |
+|----|-----------|------------------|----------|-------------------|----|
+
+Saved in the project root.
+
+---
+
+##  Script 2 — *Reliability & Validity Analyses*
+
+### Includes:
+
+### **1. Construct Validity**  
+- Shapiro–Wilk tests  
+- Levene’s test  
+- Parametric or non-parametric tests  
+- Boxplots generated with **ggplot2**
+
+### **2. Intra-observer Reliability**  
+- ICC (two-way, agreement, single)  
+- Shapiro test on paired differences  
+- Paired t-test or Wilcoxon signed-rank test  
+
+### **3. Inter-observer Reliability**  
+- ICC (two-way, agreement, single)  
+- Shapiro test  
+- Paired t-test or Wilcoxon  
+
+### **4. Test–retest Reliability**  
+- ICC (one-way, consistency, single)  
+- Paired comparison test  
+
+All results print directly to the R console.
+
+---
+
+##  Citation
+
+If you use the repository or the HWTAI scoring system, cite:
+
+**Pons-Oliver, M., & López-Ros, V.**  
+*Design and validation of the Handball Wing Throw Assessment Instrument (HWTAI) for novice players.*
+
+---
+
+##  License
+
+This project is released under the **MIT License**, allowing reuse with attribution.
+
+
+---
+
+##  Contact
+
+For questions, suggestions, or collaborations:
+
+📧 **Martí Pons-Oliver** — (marti.3x3@gmail.com)
+
+---
+
+
 
