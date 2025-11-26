@@ -42,11 +42,11 @@ test_retest <- hwtai %>%
   ) %>%
   slice(1) %>%
   ungroup() %>%
-  select(id, assessment_time, ir) %>%
+  select(id, assessment_time, pi) %>%
   pivot_wider(
     names_from = assessment_time,
-    values_from = ir,
-    names_prefix = "ir_t"
+    values_from = pi,
+    names_prefix = "pi_t"
   )
 
 
@@ -61,11 +61,11 @@ intraobserver <- hwtai %>%
   arrange(assessment_time != 1) %>%
   slice(1) %>%
   ungroup() %>%
-  select(id, observation_time, ir) %>%
+  select(id, observation_time, pi) %>%
   pivot_wider(
     names_from = observation_time,
-    values_from = ir,
-    names_prefix = "ir_io_"
+    values_from = pi,
+    names_prefix = "pi_io_"
   )
 
 
@@ -80,11 +80,11 @@ interobserver <- hwtai %>%
   arrange(assessment_time != 1) %>%
   slice(1) %>%
   ungroup() %>%
-  select(id, observer, ir) %>%
+  select(id, observer, pi) %>%
   pivot_wider(
     names_from = observer,
-    values_from = ir,
-    names_prefix = "ir_ieo_"
+    values_from = pi,
+    names_prefix = "pi_ieo_"
   )
 
 
@@ -121,20 +121,20 @@ novice_expert <- hwtai %>%
 ###############################################################
 
 # Expert vs Inexpert
-shapiro_expert_inexp <- shapiro.test(inexpert_expert$ir[inexpert_expert$expertise == "expert"])
-shapiro_inexpert     <- shapiro.test(inexpert_expert$ir[inexpert_expert$expertise == "inexpert"])
+shapiro_expert_inexp <- shapiro.test(inexpert_expert$pi[inexpert_expert$expertise == "expert"])
+shapiro_inexpert     <- shapiro.test(inexpert_expert$pi[inexpert_expert$expertise == "inexpert"])
 
 # Expert vs Novice
-shapiro_expert_nov <- shapiro.test(novice_expert$ir[novice_expert$expertise == "expert"])
-shapiro_novice     <- shapiro.test(novice_expert$ir[novice_expert$expertise == "novice"])
+shapiro_expert_nov <- shapiro.test(novice_expert$pi[novice_expert$expertise == "expert"])
+shapiro_novice     <- shapiro.test(novice_expert$pi[novice_expert$expertise == "novice"])
 
 
 ###############################################################
 ### 2. HOMOGENEITY OF VARIANCES (Levene)
 ###############################################################
 
-levene_inexpert <- leveneTest(ir ~ expertise, data = inexpert_expert)
-levene_novice   <- leveneTest(ir ~ expertise, data = novice_expert)
+levene_inexpert <- leveneTest(pi ~ expertise, data = inexpert_expert)
+levene_novice   <- leveneTest(pi ~ expertise, data = novice_expert)
 
 
 ###############################################################
@@ -147,9 +147,9 @@ normal_inexp <- (shapiro_expert_inexp$p.value > 0.05 &
 var_equal_inexp <- levene_inexpert$"Pr(>F)"[1] > 0.05
 
 test_inexpert_expert <- if (normal_inexp) {
-  t.test(ir ~ expertise, data = inexpert_expert, var.equal = var_equal_inexp)
+  t.test(pi ~ expertise, data = inexpert_expert, var.equal = var_equal_inexp)
 } else {
-  wilcox.test(ir ~ expertise, data = inexpert_expert)
+  wilcox.test(pi ~ expertise, data = inexpert_expert)
 }
 
 # Expert vs Novice
@@ -158,9 +158,9 @@ normal_nov <- (shapiro_expert_nov$p.value > 0.05 &
 var_equal_nov <- levene_novice$"Pr(>F)"[1] > 0.05
 
 test_novice_expert <- if (normal_nov) {
-  t.test(ir ~ expertise, data = novice_expert, var.equal = var_equal_nov)
+  t.test(pi ~ expertise, data = novice_expert, var.equal = var_equal_nov)
 } else {
-  wilcox.test(ir ~ expertise, data = novice_expert)
+  wilcox.test(pi ~ expertise, data = novice_expert)
 }
 
 
@@ -170,13 +170,13 @@ test_novice_expert <- if (normal_nov) {
 
 ggplot(
   rbind(inexpert_expert, novice_expert),
-  aes(x = expertise, y = ir, fill = expertise)
+  aes(x = expertise, y = pi, fill = expertise)
 ) +
   geom_boxplot() +
   labs(
-    title = "Construct Validity – IR by Expertise Level",
+    title = "Construct Validity – PI by Expertise Level",
     x = "Expertise Level",
-    y = "IR Score"
+    y = "PI Score"
   ) +
   theme_minimal()
 
@@ -193,7 +193,7 @@ ggplot(
 ###############################################################
 
 icc_intra <- icc(
-  intraobserver[, c("ir_io_1", "ir_io_2")],
+  intraobserver[, c("pi_io_1", "pi_io_2")],
   model = "twoway",
   type  = "agreement",
   unit  = "single"
@@ -206,7 +206,7 @@ icc_intra
 ### 2. DIFFERENCES + NORMALITY
 ###############################################################
 
-intraobserver$diff_io <- intraobserver$ir_io_1 - intraobserver$ir_io_2
+intraobserver$diff_io <- intraobserver$pi_io_1 - intraobserver$pi_io_2
 shapiro.test(intraobserver$diff_io)
 
 
@@ -215,9 +215,9 @@ shapiro.test(intraobserver$diff_io)
 ###############################################################
 
 test_intra <- if (shapiro.test(intraobserver$diff_io)$p.value > 0.05) {
-  t.test(intraobserver$ir_io_1, intraobserver$ir_io_2, paired = TRUE)
+  t.test(intraobserver$pi_io_1, intraobserver$pi_io_2, paired = TRUE)
 } else {
-  wilcox.test(intraobserver$ir_io_1, intraobserver$ir_io_2, paired = TRUE)
+  wilcox.test(intraobserver$pi_io_1, intraobserver$pi_io_2, paired = TRUE)
 }
 
 test_intra
@@ -235,7 +235,7 @@ test_intra
 ###############################################################
 
 icc_inter <- icc(
-  interobserver[, c("ir_ieo_a", "ir_ieo_b")],
+  interobserver[, c("pi_ieo_a", "pi_ieo_b")],
   model = "twoway",
   type  = "agreement",
   unit  = "single"
@@ -248,7 +248,7 @@ icc_inter
 ### 2. DIFFERENCES + NORMALITY
 ###############################################################
 
-interobserver$diff_ieo <- interobserver$ir_ieo_a - interobserver$ir_ieo_b
+interobserver$diff_ieo <- interobserver$pi_ieo_a - interobserver$pi_ieo_b
 shapiro.test(interobserver$diff_ieo)
 
 
@@ -257,9 +257,9 @@ shapiro.test(interobserver$diff_ieo)
 ###############################################################
 
 test_inter <- if (shapiro.test(interobserver$diff_ieo)$p.value > 0.05) {
-  t.test(interobserver$ir_ieo_a, interobserver$ir_ieo_b, paired = TRUE)
+  t.test(interobserver$pi_ieo_a, interobserver$pi_ieo_b, paired = TRUE)
 } else {
-  wilcox.test(interobserver$ir_ieo_a, interobserver$ir_ieo_b, paired = TRUE)
+  wilcox.test(interobserver$pi_ieo_a, interobserver$pi_ieo_b, paired = TRUE)
 }
 
 test_inter
@@ -277,7 +277,7 @@ test_inter
 ###############################################################
 
 icc_test_retest <- icc(
-  test_retest[, c("ir_t1", "ir_t2")],
+  test_retest[, c("pi_t1", "pi_t2")],
   model = "oneway",
   type  = "consistency",
   unit  = "single"
@@ -290,7 +290,7 @@ icc_test_retest
 ### 2. DIFFERENCES + NORMALITY
 ###############################################################
 
-test_retest$diff_t <- test_retest$ir_t2 - test_retest$ir_t1
+test_retest$diff_t <- test_retest$pi_t2 - test_retest$pi_t1
 shapiro.test(test_retest$diff_t)
 
 
@@ -299,9 +299,9 @@ shapiro.test(test_retest$diff_t)
 ###############################################################
 
 test_test_retest <- if (shapiro.test(test_retest$diff_t)$p.value > 0.05) {
-  t.test(test_retest$ir_t1, test_retest$ir_t2, paired = TRUE)
+  t.test(test_retest$pi_t1, test_retest$pi_t2, paired = TRUE)
 } else {
-  wilcox.test(test_retest$ir_t1, test_retest$ir_t2, paired = TRUE)
+  wilcox.test(test_retest$pi_t1, test_retest$pi_t2, paired = TRUE)
 }
 
 test_test_retest
