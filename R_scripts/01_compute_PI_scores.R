@@ -45,7 +45,7 @@ clean_attempt <- function(A, T, D, E, R, P){
     return(list(A = 0, T = 0, D = 0, E = 0, R = "x"))
   }
   
-  if (P %in% c("san", "reg")) {
+  if (P %in% c("dis", "reg")) {
     R <- "x"
   }
   
@@ -94,7 +94,7 @@ for(level in 1:3){
 attempt_points <- function(A, T, D, E, P, level){
   
   bonus <- case_when(
-    P == "san"            ~ -2,
+    P == "dis"            ~ -2,
     E == 1 & P == "no"    ~ c(1.5, 2, 3)[level],
     E == 1 & P == "reg"   ~ 0,
     TRUE                  ~ 0
