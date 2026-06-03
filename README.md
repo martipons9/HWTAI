@@ -5,14 +5,20 @@
 ---
 
 ## **Overview**
+
 This repository contains all scripts and materials used to compute the HWTAI performance score (PI score) and to conduct the instrument’s reliability and construct validity analyses.
 
 Two independent R scripts are provided:
 
 - **01_compute_PI.R** → Computes the PI score from raw observation data  
-- **02_reliability_and_validity_analysis.R** → Performs test–retest, intra-observer, inter-observer reliability, and construct validity
+- **02_reliability_and_validity_analysis.R** → Performs test–retest, intra-observer, inter-observer reliability, and construct validity analyses
 
-A template Excel file (**hwtai_data.xlsx**) is included so that users can input their own observational data.
+The repository also includes:
+
+- **Appendix_A_scoring_system.docx** → Detailed scoring criteria, coding instructions, throw classifications, and penalisation rules required to complete the data sheet correctly
+- **hwtai_data.xlsx** → Template Excel file for entering observational data
+
+Together, these files allow users to code performances, calculate the Performance Index (PI), and reproduce all reliability and validity analyses reported for the HWTAI.
 
 ---
 
