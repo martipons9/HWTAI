@@ -49,7 +49,7 @@ Example: A1_2 → Approach run, attempt 1, level 2
 
 ### **How to fill each column**
 
-Before entering any data, please consult **Appendix A – Scoring System**, which provides the operational definitions, scoring criteria, throw classifications, penalisation rules, and all coding instructions required to complete the spreadsheet correctly.
+Before entering any data, please consult `Appendix_A_punctuation_system.docx`, which provides the operational definitions, scoring criteria, throw classifications, penalisation rules, and all coding instructions required to complete the spreadsheet correctly.
 
 | Column | What to write |
 |----------|----------|
