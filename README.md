@@ -47,16 +47,21 @@ Example: A1_2 → Approach run, attempt 1, level 2
 - **R** = *Technical repertoire*  
 - **P** = *Penalisation*
 
-###  **How to fill each column**
+### **How to fill each column**
+
+Before entering any data, please consult **Appendix A – Scoring System**, which provides the operational definitions, scoring criteria, throw classifications, penalisation rules, and all coding instructions required to complete the spreadsheet correctly.
+
 | Column | What to write |
-|--------|---------------|
-| **A, T, D, E** | Write **1** if the condition is met, **0** otherwise (see *Appendix A – Scoring System*) |
+|----------|----------|
+| **A, T, D, E** | Write **1** if the condition is met, **0** otherwise |
 | **R** | Write the single-letter code corresponding to the throw performed |
 | **P** | `no`, `reg`, `dis`, or `inv` |
 
-### ⚠️ Important
-No additional calculations are needed.  
-**All weightings and scoring rules are automated inside the R code.**
+### ⚠️ **Important**
+
+- **Appendix A – Scoring System** should be consulted before coding any attempt.
+- No additional calculations are needed.
+- **All weightings, score calculations, and validity/reliability analyses are automated within the R script.**
 
 ---
 
