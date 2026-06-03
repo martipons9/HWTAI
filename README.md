@@ -10,7 +10,7 @@ This repository contains all scripts and materials used to compute the HWTAI per
 Two independent R scripts are provided:
 
 - **01_compute_PI.R** → Computes the PI score from raw observation data  
-- **02_reliability_validity_analysis.R** → Performs test–retest, intra-observer, inter-observer reliability, and construct validity
+- **02_reliability_and_validity_analysis.R** → Performs test–retest, intra-observer, inter-observer reliability, and construct validity
 
 A template Excel file (**hwtai_data.xlsx**) is included so that users can input their own observational data.
 
