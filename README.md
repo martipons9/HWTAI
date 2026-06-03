@@ -52,7 +52,7 @@ Example: A1_2 → Approach run, attempt 1, level 2
 |--------|---------------|
 | **A, T, D, E** | Write **1** if the condition is met, **0** otherwise (see *Appendix A – Scoring System*) |
 | **R** | Write the single-letter code corresponding to the throw performed |
-| **P** | `no`, `reg`, `san`, or `inv` |
+| **P** | `no`, `reg`, `dis`, or `inv` |
 
 ### ⚠️ Important
 No additional calculations are needed.  
