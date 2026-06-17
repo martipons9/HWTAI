@@ -1,5 +1,5 @@
 # **Handball Wing Throw Assessment Instrument (HWTAI)**  
-## *Design and validation of the Handball Wing Throw Assessment Instrument (HWTAI) for novice players*  
+## *Design and validation of the Handball Wing Throw Assessment Instrument (HWTAI) for early specific skill acquisition*  
 ### **Martí Pons-Oliver & Víctor López-Ros**
 
 ---
