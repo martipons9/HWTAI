@@ -144,8 +144,8 @@ All results print directly to the R console.
 
 If you use the repository or the HWTAI scoring system, cite:
 
-**Pons-Oliver, M., & López-Ros, V.**  
-*Design and validation of the Handball Wing Throw Assessment Instrument (HWTAI) for novice players.*
+**Pons-Oliver, M., González-Devesa, D. & López-Ros, V.**  
+*Design and validation of the HWTAI: An assessment instrument for early handball wing throw skill acquisition.*
 
 ---
 
